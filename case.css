@@ -1,0 +1,200 @@
+/* ---------- case study page ---------- */
+
+.case-hero {
+  position: relative;
+  overflow: hidden;
+  background: #020a1e;
+  color: #fff;
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+}
+
+.case-hero .site-header,
+.case-hero .case-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.case-hero .brand,
+.case-hero .nav a {
+  color: #fff;
+}
+
+.case-hero .nav a::after {
+  background: #fff;
+}
+
+.case-mesh {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+/* Same trick as the cards: the mesh runs pale up top, so scrim the reading
+   side and let the colour breathe on the right. */
+.case-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(100deg,
+    rgba(var(--scrim), .93) 0%,
+    rgba(var(--scrim), .88) 30%,
+    rgba(var(--scrim), .66) 52%,
+    rgba(var(--scrim), .18) 76%,
+    rgba(var(--scrim), 0) 92%);
+}
+
+.case-back {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  margin-top: clamp(3rem, 9vh, 6rem);
+}
+
+.case-back:hover { color: #fff; }
+
+.case-title {
+  font-family: "TT Ramillas", "Playfair Display", Times, serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin: 1.5rem 0 0;
+  max-width: 18ch;
+}
+
+.case-standfirst {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,.75);
+  max-width: 58ch;
+  margin: 1.5rem 0 0;
+}
+
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
+  gap: 2.5rem;
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+}
+
+.case-meta dt {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+}
+
+.case-meta dd {
+  margin: .5rem 0 0;
+  font-size: .95rem;
+}
+
+/* ---------- frames ---------- */
+
+.case-body {
+  padding: clamp(3rem, 9vh, 7rem) 0 clamp(4rem, 10vh, 8rem);
+}
+
+.case-frame {
+  margin: 0 auto clamp(2rem, 5vh, 4rem);
+  width: min(1100px, 92vw);
+}
+
+/* Shots that earn the extra room, still capped so they never force a
+   horizontal scrollbar on a narrow window. */
+.case-frame-wide {
+  width: min(1500px, 96vw);
+}
+
+.case-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  background: #f4f4f6;
+  box-shadow: 0 18px 50px rgba(0,0,0,.12);
+}
+
+.case-frame figcaption {
+  margin-top: 1rem;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* ---------- sliced document export ---------- */
+
+.case-doc {
+  width: min(1200px, 94vw);
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0,0,0,.12);
+  /* The strips are one continuous image, so kill any inline-layout leading
+     that would otherwise show as gaps between them. */
+  line-height: 0;
+  font-size: 0;
+  background: #fff;
+}
+
+.case-doc img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Fractional scaling can round adjacent strips to leave a hairline. Pulling
+   each one up a pixel covers the seam; the overlap is a single CSS pixel of a
+   continuous image, so nothing readable is lost. */
+.case-doc img + img {
+  margin-top: -1px;
+}
+
+@media (max-width: 768px) {
+  .case-doc {
+    width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.case-empty {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: clamp(3rem, 10vh, 6rem) 2rem;
+  border: 1px dashed #d8d8dd;
+  border-radius: 18px;
+  text-align: center;
+  color: #777;
+  font-size: .95rem;
+  line-height: 1.7;
+}
+
+.case-empty code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .85em;
+  background: #f4f4f6;
+  padding: .15em .45em;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .case-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .case-frame img {
+    border-radius: 10px;
+  }
+}

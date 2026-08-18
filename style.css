@@ -1,0 +1,998 @@
+/* ---------- reset / globals ---------- */
+
+/* TT Ramillas is licensed (TypeType). Drop TTRamillas-Regular.woff2 into
+   fonts/ (or install the font on this Mac) and it takes over from the
+   Playfair Display fallback automatically. */
+@font-face {
+  font-family: "TT Ramillas";
+  src: local("TT Ramillas"),
+       url("fonts/TTRamillas-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::selection {
+  background: rgba(230,187,255,.6);
+  color: #000;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #000;
+  background: #fff;
+}
+
+a { color: inherit; }
+
+.grid {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.h2 {
+  font-family: "Fraunces", Times, serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.h2 a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(0, 0, 0, .45);
+  text-decoration-thickness: .035em;
+  text-underline-offset: .18em;
+}
+
+.label-mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000;
+}
+
+/* ---------- reveal motion ---------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+  transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1), filter .6s cubic-bezier(.16,1,.3,1);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.8rem;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-size: 1.0625rem;
+}
+
+.nav a {
+  position: relative;
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 6px;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -6px;
+  height: 2px;
+  background: #000;
+  transition: left .3s ease-out, right .3s ease-out;
+}
+
+.nav a:hover::after {
+  left: 0;
+  right: 0;
+}
+
+.nav a {
+  transition: opacity .15s ease;
+}
+
+.nav a:active {
+  opacity: .5;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse 130% 100% at 50% 0%, rgba(230,187,255,.6) 0%, #fff 100%);
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: .06;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-inner {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(4rem, 9vh, 7rem);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  text-align: left;
+}
+
+.hero-title {
+  font-family: "TT Ramillas", "Playfair Display", Times, serif;
+  font-size: clamp(2.6rem, 4.25vw, 3.91rem);
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -.016em;
+  color: #000;
+  margin: 0 0 1.75rem;
+}
+
+.hero-sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000;
+  margin: 0;
+  max-width: 62ch;
+}
+
+.hero-sub a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(0,0,0,.45);
+  text-decoration-thickness: .05em;
+  text-underline-offset: .18em;
+}
+
+.hero-arrow {
+  display: inline-block;
+  margin-left: .35rem;
+}
+
+/* ---------- sticky case-study cards ---------- */
+
+.cards {
+  position: relative;
+  padding-top: clamp(3rem, 7vh, 6rem);
+}
+
+.card {
+  --offset: 60px;
+  width: 80%;
+  margin: 0 auto 45vh;
+  border-radius: 30px;
+  position: sticky;
+  top: var(--offset);
+  height: calc(100vh - (2 * var(--offset)));
+  overflow: hidden;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 35%;
+  column-gap: 5vw;
+}
+
+.card-mesh {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+/* The mesh runs pale mint at the top, which the white copy cannot sit on.
+   Scrim the left column so the type has ground, and let the mint read across
+   the right half where the card is otherwise empty. */
+.card-mesh-host {
+  --scrim: 2, 10, 30;
+}
+
+.card-mesh-host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(100deg,
+    rgba(var(--scrim), .92) 0%,
+    rgba(var(--scrim), .86) 26%,
+    rgba(var(--scrim), .62) 48%,
+    rgba(var(--scrim), .12) 72%,
+    rgba(var(--scrim), 0) 88%);
+}
+
+.card-mesh-host .card-left {
+  position: relative;
+  z-index: 2;
+}
+
+.card:last-child {
+  margin-bottom: calc(var(--offset) * 1.3);
+}
+
+.card-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14vh 2rem 10vh clamp(40px, 5vw, 80px);
+}
+
+.kicker {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 1.6rem;
+}
+
+.card-heading {
+  text-wrap: balance;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  color: #fff;
+  margin: 0;
+  max-width: 24ch;
+}
+
+.card-heading em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.card-text {
+  width: 70%;
+  min-width: min(52ch, 100%);
+  font-size: 17px;
+  line-height: 1.55;
+  margin-top: 1.8rem;
+}
+
+.card-text p {
+  margin: 0;
+  opacity: .65;
+  /* No single-word last lines. */
+  text-wrap: pretty;
+}
+
+.card-text a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.card-img {
+  /* screenshot slot */
+  align-self: end;
+  justify-self: center;
+}
+
+/* ---------- framed product shot ---------- */
+
+.card-has-shot {
+  grid-template-columns: 1fr 40%;
+}
+
+.card-has-shot .card-text {
+  width: 100%;
+  min-width: 0;
+  max-width: 56ch;
+}
+
+.card-has-shot .card-heading {
+  max-width: none;
+}
+
+/* Flat and straight-on: the shot is a white panel floated over the mesh,
+   vertically centred, running off the card's right edge. The UI itself is the
+   frame - no fake browser chrome, no tilt. */
+.card-shot {
+  position: absolute;
+  z-index: 2;
+  left: 60%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48%;
+  aspect-ratio: 956 / 804;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  pointer-events: none;
+}
+
+/* The panel takes the image's own aspect, so nothing inside it is cropped;
+   the card's right edge does the only cropping. */
+.card-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card:last-child {
+  margin-bottom: calc(var(--offset) * 1.3);
+}
+
+.card-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14vh 2rem 10vh clamp(40px, 5vw, 80px);
+}
+
+.kicker {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 1.6rem;
+}
+
+.card-heading {
+  text-wrap: balance;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  color: #fff;
+  margin: 0;
+  max-width: 24ch;
+}
+
+.card-heading em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.card-text {
+  width: 70%;
+  min-width: min(52ch, 100%);
+  font-size: 17px;
+  line-height: 1.55;
+  margin-top: 1.8rem;
+}
+
+.card-text p {
+  margin: 0;
+  opacity: .65;
+  /* No single-word last lines. */
+  text-wrap: pretty;
+}
+
+.card-text a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.card-img {
+  /* screenshot slot */
+  align-self: end;
+  justify-self: center;
+}
+
+/* ---------- framed product shot ---------- */
+
+.card-has-shot {
+  grid-template-columns: 1fr 40%;
+}
+
+.card-has-shot .card-text {
+  width: 100%;
+  min-width: 0;
+  max-width: 56ch;
+}
+
+.card-has-shot .card-heading {
+  max-width: none;
+}
+
+/* expanding circle CTA */
+
+.cta-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87.6px;
+  height: 87.6px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .4s cubic-bezier(.4,0,.2,1), transform .15s ease;
+}
+
+.cta-btn-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.72rem;
+  height: 3.72rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  flex-shrink: 0;
+  transition: all .4s cubic-bezier(.4,0,.2,1);
+  z-index: 1;
+}
+
+.cta-btn-icon svg {
+  width: 1.56rem;
+  height: 1.56rem;
+  transition: transform .4s cubic-bezier(.4,0,.2,1) .125s;
+}
+
+.cta-btn-icon path {
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.cta-btn-text {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-20px);
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all .4s cubic-bezier(.4,0,.2,1) .125s;
+}
+
+.cta-btn:hover,
+.cta-btn:focus-visible {
+  width: 374.4px;
+  border-radius: 50px;
+  justify-content: flex-start;
+  padding: 18px;
+}
+
+.cta-btn:hover .cta-btn-icon,
+.cta-btn:focus-visible .cta-btn-icon {
+  left: auto;
+  right: 13px;
+  transform: translateY(-50%);
+}
+
+.cta-btn:hover .cta-btn-icon svg,
+.cta-btn:focus-visible .cta-btn-icon svg {
+  transform: translateX(2px);
+}
+
+.cta-btn:hover .cta-btn-text,
+.cta-btn:focus-visible .cta-btn-text {
+  opacity: 1;
+  width: auto;
+  transform: translateY(-50%) translateX(8%);
+}
+
+.cta-btn:active {
+  transform: scale(.97);
+}
+
+.cta-btn-disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+.cta-btn-disabled .cta-btn-text {
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn,
+  .cta-btn-icon,
+  .cta-btn-icon svg,
+  .cta-btn-text {
+    transition: none;
+  }
+}
+
+/* ---------- side projects carousel ---------- */
+
+.side {
+  margin-top: 8rem;
+}
+
+.side-title {
+  font-family: "TT Ramillas", "Playfair Display", Times, serif;
+  font-size: clamp(1.9rem, 3.1vw, 3rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  color: #000;
+  margin: 0;
+}
+
+.side-title a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(0,0,0,.45);
+  text-decoration-thickness: .035em;
+  text-underline-offset: .18em;
+}
+
+.carousel-wrap {
+  position: relative;
+}
+
+.carousel-nav {
+  position: absolute;
+  left: max(1rem, calc(10% - 92px));
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+
+.car-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+  padding: 0;
+}
+
+.car-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(0,0,0,.1);
+}
+
+.car-btn:active {
+  transform: scale(.94);
+}
+
+.car-btn[disabled] {
+  opacity: .35;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .2s ease;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 30px;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 10%;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+  padding: 3rem 2rem 3rem 10%;
+  margin-top: .5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel.is-dragging .proj-card {
+  pointer-events: none;
+}
+
+.proj-card {
+  position: relative;
+  width: 459px;
+  height: 575px;
+  flex-shrink: 0;
+  border-radius: .5rem;
+  overflow: hidden;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.proj-visual {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 56px 0 0;
+}
+
+.shot {
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(0,0,0,.18);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.shot-phone {
+  width: 300px;
+  height: 480px;
+  border-radius: 24px;
+  padding: 2.4rem 1.5rem;
+}
+
+.shot-browser {
+  width: 340px;
+  height: 330px;
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  margin-top: 14px;
+}
+
+.shot-dots {
+  display: flex;
+  gap: 5px;
+  margin-bottom: .9rem;
+}
+
+.shot-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e3e3e3;
+}
+
+.shot-bar {
+  height: 12px;
+  width: 46%;
+  border-radius: 4px;
+  background: #ececec;
+  margin-bottom: 14px;
+}
+
+.shot-line {
+  height: 9px;
+  border-radius: 4px;
+  background: #ececec;
+  margin-bottom: 10px;
+}
+
+.shot-block {
+  height: 150px;
+  border-radius: 8px;
+  background: #f2f2f2;
+  margin: 16px 0;
+}
+
+.proj-text {
+  position: relative;
+  z-index: 1;
+  height: 30%;
+  flex-shrink: 0;
+  background: var(--band, rgba(0,0,0,.85));
+  padding: 34px 2.5rem 0;
+}
+
+.proj-name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: .5rem;
+}
+
+.proj-desc {
+  color: #fff;
+  opacity: .75;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- about ---------- */
+
+.about {
+  margin-top: 7rem;
+}
+
+.about-label {
+  font-size: 110%;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.chip {
+  background: linear-gradient(90deg, rgb(195,205,255) 0%, rgba(230,187,255,.6) 100%);
+  padding: .15rem .35rem;
+  border-radius: 3px;
+}
+
+.about-title {
+  padding-bottom: 3rem;
+}
+
+.about-sublabel {
+  font-size: 17px;
+  color: #666;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.beliefs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.belief-card {
+  padding: 2rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  min-height: 200px;
+  font: 17px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #666;
+}
+
+.belief-card strong {
+  color: #000;
+}
+
+.belief-card strong em {
+  font-style: italic;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  background: #000;
+  color: #fff;
+  margin-top: 6rem;
+  padding: 6rem 0 4rem;
+}
+
+.footer-heading {
+  color: #fff;
+}
+
+.footer-mail {
+  display: inline-block;
+  font-family: "Fraunces", Times, serif;
+  font-size: 1.54rem;
+  letter-spacing: -1px;
+  opacity: .6;
+  color: #fff;
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(255,255,255,.45);
+  text-decoration-thickness: .035em;
+  text-underline-offset: .18em;
+  padding-top: .5rem;
+}
+
+.footer-mail:hover {
+  opacity: 1;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.footer-col {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .75rem;
+  color: #797979;
+  text-decoration: none;
+  transition: color .25s;
+}
+
+a.footer-col:hover {
+  color: #fff;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 768px) {
+  .grid {
+    width: 90%;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+  }
+
+  .site-header {
+    padding-top: 1.4rem;
+  }
+
+  .brand {
+    font-size: .9rem;
+  }
+
+  .nav {
+    gap: 1rem;
+    font-size: .8rem;
+  }
+
+  .card {
+    --offset: 24px;
+    width: 90%;
+    grid-template-columns: 1fr;
+  }
+
+  .card-left {
+    padding: 2.5rem 24px;
+  }
+
+  .card-text {
+    width: 100%;
+    font-size: 15px;
+    margin-top: 1.2rem;
+  }
+
+  .kicker {
+    margin-bottom: 1rem;
+  }
+
+  .card-img {
+    display: none;
+  }
+
+  .card-shot {
+    display: none;
+  }
+
+  .cta-btn {
+    width: 234px;
+    border-radius: 50px;
+    justify-content: flex-start;
+    padding: 13px;
+    height: 66px;
+  }
+
+  .cta-btn-text {
+    opacity: 1;
+    width: auto;
+    left: 13px;
+    transform: translateY(-50%) translateX(8%);
+    font-size: 17px;
+  }
+
+  .cta-btn-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    left: auto;
+    right: 13px;
+    transform: translateY(-50%);
+  }
+
+  .cta-btn-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .carousel {
+    padding-left: 5vw;
+  }
+
+  .carousel-nav {
+    display: none;
+  }
+
+  .proj-card {
+    width: 85vw;
+    height: 500px;
+  }
+
+  .beliefs {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+}

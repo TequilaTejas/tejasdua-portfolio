@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pacer — Tejas Dua</title>
+  <meta name="description" content="Pacer: a timer and whiteboard coach for system-design interviews." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-size='52' font-family='monospace' fill='%23C2F703' text-anchor='middle'%3ETD%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <main>
+    <div class="ascii-fluid" aria-hidden="true"><canvas id="fluid-canvas"></canvas></div>
+
+    <div class="column">
+
+      <nav class="back-nav anim anim-header">
+        <a class="back-link" href="../index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+          <span>Tejas Dua</span>
+        </a>
+        <a class="ext-link" href="https://tequilatejas.github.io/pacer/" target="_blank" rel="noopener noreferrer">
+          <span>Live Site</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+        </a>
+      </nav>
+
+      <header class="project-header anim anim-intro">
+        <div class="project-meta"><span class="mono">2026</span><span>•</span><span>Interview Coaching</span></div>
+        <h1>Pacer</h1>
+        <p class="project-sub">A timer and whiteboard coach that keeps system-design interviews on schedule</p>
+        <div class="overview-card">
+          <h2>Project Overview</h2>
+          <p>Pacer walks a candidate through a 13-step system-design framework against the clock. Each phase gets a time budget, a prompt for what to draw, and a nudge when the whiteboard is falling behind the timer.</p>
+        </div>
+      </header>
+
+      <section class="screens anim anim-section">
+        <div class="screens-head">
+          <h2>Project Screens (3)</h2>
+          <span>Click any screen to open live</span>
+        </div>
+
+        <article class="screen">
+          <div class="screen-title"><span class="num">01</span><h3>Live Session &amp; Timer</h3></div>
+          <a class="screen-frame" href="https://tequilatejas.github.io/pacer/" target="_blank" rel="noopener noreferrer" style="display:block; aspect-ratio:16/10;">
+            <iframe src="https://tequilatejas.github.io/pacer/" loading="lazy" tabindex="-1" title="Pacer live"></iframe>
+          </a>
+        </article>
+
+        <article class="screen">
+          <div class="screen-title"><span class="num">02</span><h3>Framework Steps</h3></div>
+          <div class="screen-frame"><div class="placeholder">Drop screenshot: /projects/pacer/steps.png</div></div>
+        </article>
+
+        <article class="screen">
+          <div class="screen-title"><span class="num">03</span><h3>Session Recap</h3></div>
+          <div class="screen-frame"><div class="placeholder">Drop screenshot: /projects/pacer/recap.png</div></div>
+        </article>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../assets/ascii-fluid.js"></script>
+  <script src="../assets/site.js"></script>
+  <script type="module" src="../assets/agentation-dev.js"></script>
+</body>
+</html>

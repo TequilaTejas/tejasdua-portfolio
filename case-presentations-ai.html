@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Tier for Presentations.ai | Tejas Dua</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-size='52' font-family='monospace' fill='%23C2F703' text-anchor='middle'%3ETD%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="case/presentations-ai/slice-00.webp">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; }
+  .doc-chrome {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.5rem;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity .35s ease;
+  }
+  .doc-chrome.is-hidden { opacity: 0; }
+  .doc-chrome.is-hidden .doc-pill { pointer-events: none; }
+  .doc-pill {
+    pointer-events: auto;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(10,10,10,.72);
+    backdrop-filter: blur(8px);
+    border-radius: 999px;
+    padding: .55rem .95rem;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  a.doc-pill:hover { background: rgba(10,10,10,.9); }
+  .case-doc { display: block; }
+  .case-doc img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-chrome">
+  <a class="doc-pill" href="index.html">&larr; All work</a>
+  <span class="doc-pill">Enterprise Tier &middot; Presentations.ai</span>
+</div>
+
+<main class="case-doc js-case-frames" data-case="presentations-ai"></main>
+
+<script src="js/case-frames.js?v=2"></script>
+<script>
+(function () {
+  var host = document.querySelector('.js-case-frames');
+  var content = (window.CASE_FRAMES || {})[host.dataset.case];
+  if (!content || content.type !== 'document') return;
+  var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+  var html = '';
+  for (var i = 0; i < content.count; i++) {
+    var src = content.dir + content.prefix + pad(i) + '.' + content.ext;
+    /* Only the first two strips load eagerly - the rest are far below the fold. */
+    html += '<img src="' + src + '" width="' + content.width +
+      '" height="' + content.sliceHeight + '" loading="' + (i < 2 ? 'eager' : 'lazy') +
+      '" decoding="async" alt="' + (i === 0 ? (content.alt || '') : '') + '">';
+  }
+  host.innerHTML = html;
+})();
+
+/* Chrome fades out once scrolling starts, returns near the top. */
+(function () {
+  var chrome = document.querySelector('.doc-chrome');
+  var onScroll = function () {
+    chrome.classList.toggle('is-hidden', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

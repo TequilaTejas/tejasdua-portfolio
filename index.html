@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tejas Dua</title>
+  <meta name="description" content="Product Designer at Presentations.ai. Previously Hotstar and Navi. Design engineering, interaction design, and small tools that ship." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-size='52' font-family='monospace' fill='%23C2F703' text-anchor='middle'%3ETD%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <main>
+    <div class="ascii-fluid" aria-hidden="true"><canvas id="fluid-canvas"></canvas></div>
+
+    <div class="column">
+
+      <div class="page-header anim anim-header">
+        <h1 class="site-name anim anim-name">Tejas Dua</h1>
+        <div class="mode-control" hidden>
+          <span>Design Engineer</span>
+          <button class="switch" id="engineer-switch" role="switch" aria-checked="false" aria-label="Toggle Design Engineer mode">
+            <span class="switch-thumb"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Designer view -->
+      <div id="designer-view">
+        <div class="intro anim anim-intro">
+          <p>I&rsquo;m an AI Product Designer at <a href="https://www.presentations.ai/" target="_blank" rel="noopener noreferrer" class="chip">Presentations.ai</a>. I currently build AI workflows, core AI features, and recently, growth design.</p>
+          <p>I&rsquo;m an IIT Roorkee alum. At <a href="https://www.hotstar.com/" target="_blank" rel="noopener noreferrer" class="chip chip-hotstar">Disney+ Hotstar</a> (400M+ MAU) I worked on the consumption experience for users, and on monetisation: unlocking new revenue streams and reducing friction in existing subscription flows.</p>
+          <p>At <a href="https://navi.com/" target="_blank" rel="noopener noreferrer" class="chip chip-navi">Navi</a> (India&rsquo;s 4th largest fintech app), I worked on the mutual funds vertical, increasing SIP starts and monthly inflows by 20% over three months.</p>
+          <p>You can find me on <a href="https://github.com/TequilaTejas" target="_blank" rel="noopener noreferrer" class="ulink">GitHub</a> and <a href="https://www.linkedin.com/in/tejasdua/" target="_blank" rel="noopener noreferrer" class="ulink">LinkedIn</a>.</p>
+          <div class="intro-last">Outside of work I&rsquo;m an indie developer. I create consumer-facing macOS apps. <a href="mailto:tejas.dua.cards@gmail.com" class="ulink">Let&rsquo;s Talk</a></div>
+        </div>
+
+        <section class="list-section anim anim-section">
+          <h2 class="anim anim-label">Selected Work</h2>
+          <div>
+            <div class="row-wrap anim anim-row"><a href="case-presentations-ai.html" class="row"><span>Enterprise Tier for Presentations.ai</span><span class="year">2026</span></a></div>
+            <div class="row-wrap anim anim-row"><a href="case-hotstar.html" class="row"><span>Quick Checkout for Hotstar</span><span class="year">2024</span></a></div>
+            <div class="row-wrap anim anim-row"><div class="row row-soon"><span>Goal-based SIP</span><span class="year">Coming soon</span></div></div>
+          </div>
+        </section>
+
+        <section class="list-section anim anim-section">
+          <h2 class="anim anim-label">Experience</h2>
+          <div>
+            <div class="row-wrap anim anim-row"><a href="https://www.presentations.ai/" target="_blank" rel="noopener noreferrer" class="row"><span>Presentations.ai</span><span class="year">2025-2026</span></a></div>
+            <div class="row-wrap anim anim-row"><a href="https://navi.com/" target="_blank" rel="noopener noreferrer" class="row"><span>Navi</span><span class="year">2025</span></a></div>
+            <div class="row-wrap anim anim-row"><a href="https://www.hotstar.com/" target="_blank" rel="noopener noreferrer" class="row"><span>Hotstar</span><span class="year">2024</span></a></div>
+          </div>
+        </section>
+
+        <section class="list-section-last anim anim-section">
+          <h2 class="anim anim-label">Side projects (brewed with Claude Code)</h2>
+          <div>
+            <div class="row-wrap anim anim-row"><a href="https://tequilatejas.github.io/presentations-ai-marketing-tool/" target="_blank" rel="noopener noreferrer" class="row"><span>Design Tool for Marketing Teams</span><span class="year">2026</span></a></div>
+            <div class="row-wrap anim anim-row"><a href="https://github.com/TequilaTejas/lockin" target="_blank" rel="noopener noreferrer" class="row"><span>Lockin: Focus Tool for ADHD Brains</span><span class="year">2026</span></a></div>
+            <div class="row-wrap anim anim-row"><a href="https://tequilatejas.github.io/tejasdua.com/" target="_blank" rel="noopener noreferrer" class="row"><span>My Old Portfolio</span><span class="year">2025</span></a></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Design Engineer view -->
+      <div id="engineer-view" hidden>
+        <div class="gallery">
+          <a class="demo-card" href="https://tequilatejas.github.io/pacer/" target="_blank" rel="noopener noreferrer" aria-label="Pacer, live demo">
+            <iframe src="https://tequilatejas.github.io/pacer/" loading="lazy" tabindex="-1" title="Pacer demo"></iframe>
+            <span class="demo-pill">View live ↗</span>
+          </a>
+          <a class="demo-card" href="https://tequilatejas.github.io/emi-success/" target="_blank" rel="noopener noreferrer" aria-label="EMI Success, live demo">
+            <iframe src="https://tequilatejas.github.io/emi-success/" loading="lazy" tabindex="-1" title="EMI Success demo"></iframe>
+            <span class="demo-pill">View live ↗</span>
+          </a>
+          <a class="demo-card" href="https://tequilatejas.github.io/emi-ai-showcase/" target="_blank" rel="noopener noreferrer" aria-label="EMI AI Showcase, live demo">
+            <iframe src="https://tequilatejas.github.io/emi-ai-showcase/" loading="lazy" tabindex="-1" title="EMI AI Showcase demo"></iframe>
+            <span class="demo-pill">View live ↗</span>
+          </a>
+          <a class="demo-card" href="https://tequilatejas.github.io/nudge-system-design/" target="_blank" rel="noopener noreferrer" aria-label="Nudge Simulators, live demo">
+            <iframe src="https://tequilatejas.github.io/nudge-system-design/" loading="lazy" tabindex="-1" title="Nudge Simulators demo"></iframe>
+            <span class="demo-pill">View live ↗</span>
+          </a>
+          <a class="demo-card" href="https://tejasdua.com/" target="_blank" rel="noopener noreferrer" aria-label="Retro arcade portfolio, live demo">
+            <iframe src="https://tejasdua.com/" loading="lazy" tabindex="-1" title="Retro arcade portfolio demo"></iframe>
+            <span class="demo-pill">View live ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <section class="gh-section anim anim-section">
+        <h2 class="anim anim-label">GitHub</h2>
+        <div class="gh-card">
+          <div class="gh-head">
+            <span id="gh-total">Loading contributions&hellip;</span>
+            <span class="gh-user">@tejasdua143</span>
+          </div>
+          <div class="gh-graph-wrap">
+            <div class="gh-months" id="gh-months"></div>
+            <div class="gh-graph" id="gh-graph"></div>
+          </div>
+          <div class="gh-repos" id="gh-repos" hidden>
+            <button class="gh-repos-bar" id="gh-repos-bar" aria-expanded="false">
+              <span>Top contributions in:</span>
+              <span class="gh-repos-right">
+                <span class="gh-repo-avatars" id="gh-avatars"></span>
+                <span class="gh-chevron" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+              </span>
+            </button>
+            <div class="gh-repo-list" id="gh-repo-list" hidden></div>
+          </div>
+        </div>
+        <div class="gh-tooltip" id="gh-tooltip" hidden></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="assets/github-graph.js"></script>
+  <script src="assets/ascii-fluid.js"></script>
+  <script src="assets/site.js"></script>
+  <script type="module" src="assets/agentation-dev.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* ---------- Deck Theatre ---------- */
+
+.deck {
+  position: fixed;
+  inset: 0;
+  background: #08090c;
+  color: #fff;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.deck-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  /* The wheel handler owns paging, so the stage itself must never scroll or
+     rubber-band underneath it. */
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+
+.deck-slide {
+  grid-area: 1 / 1;
+  margin: 0;
+  width: min(100vw, 100vh * 16 / 9);
+  aspect-ratio: 16 / 9;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.985);
+  transition: opacity .42s cubic-bezier(.22,1,.36,1),
+              transform .42s cubic-bezier(.22,1,.36,1),
+              visibility 0s linear .42s;
+}
+
+.deck-slide.is-current {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s, 0s, 0s;
+}
+
+.deck-slide.is-instant {
+  transition: none;
+}
+
+.deck-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #111318;
+  box-shadow: 0 24px 70px rgba(0,0,0,.55);
+}
+
+/* ---------- chrome ---------- */
+
+.deck-chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+.deck-chrome > * {
+  pointer-events: auto;
+}
+
+.deck.is-idle .deck-chrome {
+  opacity: 0;
+}
+
+/* Do not leave invisible buttons catching clicks over the slide. */
+.deck.is-idle .deck-chrome > * {
+  pointer-events: none;
+}
+
+/* At rest the controls sit back far enough to stop competing with the slide,
+   and come up to full strength only for the group you reach for. */
+.deck-bar,
+.deck-rail {
+  opacity: .34;
+  transition: opacity .25s ease;
+}
+
+.deck-bar:hover,
+.deck-bar:focus-within,
+.deck-rail:hover,
+.deck-rail:focus-within {
+  opacity: 1;
+}
+
+.deck-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  gap: 1rem;
+}
+
+.deck-bar-top { top: 0; }
+.deck-bar-bottom { bottom: 0; }
+
+.deck-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+a.deck-label:hover { color: #fff; }
+
+.deck-nav {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.deck-btn {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 8px;
+  background: rgba(255,255,255,.04);
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, opacity .2s ease, transform .12s ease;
+}
+
+.deck-btn:hover {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.32);
+}
+
+.deck-btn:active { transform: scale(.92); }
+
+.deck-btn[disabled] {
+  opacity: .22;
+  pointer-events: none;
+}
+
+.deck-counter {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .78rem;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,.75);
+  min-width: 6ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- progress rail ---------- */
+
+.deck-rail {
+  position: absolute;
+  top: 50%;
+  right: 1.1rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0;
+}
+
+.deck-tick {
+  width: 14px;
+  height: 3px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: rgba(255,255,255,.18);
+  cursor: pointer;
+  transition: background .25s ease, width .25s ease;
+}
+
+.deck-tick.is-seen { background: rgba(255,255,255,.38); }
+
+.deck-tick.is-on {
+  width: 26px;
+  background: #fff;
+}
+
+.deck-tick:hover { background: rgba(255,255,255,.7); }
+
+.deck.has-moved .deck-hint {
+  opacity: 0;
+}
+
+.deck-hint {
+  position: absolute;
+  pointer-events: none;
+  transition: opacity .4s ease;
+  left: 50%;
+  bottom: 1.6rem;
+  transform: translateX(-50%);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  white-space: nowrap;
+}
+
+/* A 16:9 slide in a portrait phone is tiny, so tell people the deck is worth
+   turning sideways for, and get out of the way once they do. */
+.deck-rotate {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  white-space: nowrap;
+  animation: deck-rotate-out .6s ease 4s forwards;
+}
+
+@keyframes deck-rotate-out {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@media (max-width: 768px) {
+  /* Give the slide the whole width - every pixel counts at this size. */
+  .deck-slide {
+    width: min(100vw, (100vh - 6rem) * 16 / 9);
+  }
+
+  .deck-slide img {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .deck-bar { padding: 1rem 1.1rem; }
+
+  /* The deck title and the two long labels cannot share a 390px row without
+     wrapping into each other, so only the way out survives. */
+  .deck-bar-top .deck-label + .deck-label,
+  .deck-bar-bottom .deck-label {
+    display: none;
+  }
+
+  .deck-rail { display: none; }
+
+  .deck-hint { display: none; }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .deck-rotate { display: flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-rotate { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-slide,
+  .deck-chrome,
+  .deck-btn,
+  .deck-tick {
+    transition: none;
+  }
+}

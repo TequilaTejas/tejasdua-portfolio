@@ -80,6 +80,18 @@ main {
   font-size: 14px;
 }
 
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--neutral-500);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .2s;
+}
+.resume-btn svg { width: 14px; height: 14px; }
+.resume-btn:hover { color: var(--foreground); }
+
 /* Switch (sm: 24 x 14, thumb 12) */
 .switch {
   position: relative;
